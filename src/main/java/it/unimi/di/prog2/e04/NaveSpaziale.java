@@ -39,4 +39,22 @@ public class NaveSpaziale {
   //
   // non c'è bisogno di importare alcun package per poter usare Integer.
 
+
+  public static void main(String[] args) {
+    int a = Integer.parseInt(args[0]);
+    int b = Integer.parseInt(args[1]);
+    StringBuilder sequenza = new StringBuilder();
+    while (b > a) {
+      if (b % 2 == 1 || b < 4 * a || b % 4 != 0) {  
+          sequenza.append("P");
+          b --;
+      } else {  
+          sequenza.append("S");
+          b /= 4;
+      }
+  }
+    System.out.println(sequenza.reverse());
+    
+  }
+
 }
