@@ -30,11 +30,41 @@ public class GeneraQuadratoMagico {
   /** . */
   private GeneraQuadratoMagico() {}
 
-  /*- Completa il seguente main
-
   public static void main(String[] args) {
     final int N = Integer.parseInt(args[0]);
+    if (N % 2 == 0) {
+      System.out.println("Il quadrato magico è definito solo per N dispari");
+      return;
+    }
+    if (N > 100) {
+      System.out.println("N deve essere minore di 100");
+      return;
+    }
+    int[][] quadratoMagico = new int[N][N];
+    int numero = 1;
+    int riga = 0;
+    int colonna = N / 2;
+    quadratoMagico[riga][colonna] = numero;
+
+    for (numero = 2; numero <= N * N; numero++) {
+      int nuovaRiga = (riga - 1 + N) % N;
+      int nuovaColonna = (colonna + 1) % N;
+      if (quadratoMagico[nuovaRiga][nuovaColonna] == 0) {
+        riga = nuovaRiga;
+        colonna = nuovaColonna;
+      } else {
+        riga = (riga + 1) % N;
+      }
+      quadratoMagico[riga][colonna] = numero;
+    }
+    
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            System.out.print(quadratoMagico[i][j] + " ");
+        }
+        System.out.println();
+    }
+    
   }
 
-  */
 }
