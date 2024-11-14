@@ -70,7 +70,7 @@ public class BoundingBox {
     int height = bottom - top + 1;
     int width = right - left + 1;
   
-    System.out.println(height + " " + width);
+    System.out.println(height + " " + width); 
   }
 
  
