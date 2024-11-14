@@ -21,6 +21,10 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e03;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 /**
  * Vedi <a
  * href="https://github.com/mapio/labprog/blob/master/esercizi/lettera_piu_frequente/Testo.md">testo</a>,
@@ -30,15 +34,33 @@ public class LetteraPiùFrequente {
   /** . */
   private LetteraPiùFrequente() {}
 
-  /*- Completa il seguente main
-
   public static void main(String[] args) {
+        List<String> parole = new ArrayList<>();
+
     try (Scanner s = new Scanner(System.in)) {
       while (s.hasNext()) {
         final String parola = s.nextLine();
+        parole.add(parola);
       }
     }
+
+    int[] frequenze = new int[26];
+    for (String parola : parole) {
+      for (char c : parola.toCharArray()) {
+        if (Character.isLetter(c)) {
+          frequenze[Character.toLowerCase(c) - 'a']++;
+        }
+      }
+    }
+    int max = Integer.MIN_VALUE;
+    for (int i = 0; i < frequenze.length; i++) {
+      if (frequenze[i] > max) {
+        max = frequenze[i];
+      }
+    }
+    System.out.println(max);
+
+    
   }
 
-  */
 }
