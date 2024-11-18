@@ -43,7 +43,7 @@ public class NaveSpaziale {
   public static void main(String[] args) {
     int a = Integer.parseInt(args[0]);
     int b = Integer.parseInt(args[1]);
-    StringBuilder sequenza = new StringBuilder();
+    StringBuilder sequenza = new StringBuilder(); // per evitare di creare tante stringhe temporanee. creo un'unica stringa e ci appendo i caratteri
     while (b > a) {
       if (b % 2 == 1 || b < 4 * a || b % 4 != 0) {  
           sequenza.append("P");
