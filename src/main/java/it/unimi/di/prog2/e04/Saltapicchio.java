@@ -20,6 +20,8 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 package it.unimi.di.prog2.e04;
+import java.util.HashSet;
+import java.util.Scanner;
 
 /**
  * Vedi <a
@@ -30,4 +32,45 @@ public class Saltapicchio {
 
   /** . */
   private Saltapicchio() {}
+
+
+  public static void main(String[] args) {
+    int N = Integer.parseInt(args[0]);
+    if (N < 1 || N > 1024) {
+      System.err.println("N deve essere compreso tra 1 e 1024");
+      return;
+    }
+
+    int[] sequenza = new int[N];
+
+    try (Scanner s = new Scanner(System.in)) {
+      for (int i = 0; i < N; i++) {
+        if (s.hasNext()) { 
+          sequenza[i] = s.nextInt(); 
+        }
+      }
+    }
+
+    if (isSaltapicchio(sequenza)) {
+      System.out.println("saltapicchio");
+    }
+    
+  }
+
+
+  private static boolean isSaltapicchio(int[] sequenza) {
+    int N = sequenza.length;
+    if (N == 1) {
+      return true;
+    }
+    HashSet<Integer> differenze = new HashSet<>(); // per controllare che le differenze siano tutte diverse (senza duplicati)
+    for (int i = 1; i < N; i++) {
+      int diff = Math.abs(sequenza[i] - sequenza[i - 1]);
+      if (diff < 1 || diff > N-1) {
+        return false;
+      }
+      differenze.add(diff);
+    }
+    return differenze.size() == N - 1;
+  }
 }
