@@ -28,7 +28,7 @@ package it.unimi.di.prog2.e03;
 public class GeneraQuadratoMagico {
 
   /** . */
-  private GeneraQuadratoMagico() {}
+  private GeneraQuadratoMagico() {} // non posso creare oggetti di questa classe perchè il costruttore è privato
 
   public static void main(String[] args) {
     final int N = Integer.parseInt(args[0]);

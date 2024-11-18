@@ -32,16 +32,16 @@ import java.util.Scanner;
 public class BoundingBox {
 
   /** . */
-  private BoundingBox() {}
+  private BoundingBox() {} // non posso creare oggetti di questa classe perchè il costruttore è privato
 
 
 
   public static void main(String[] args) {
-    List<String> lines = new ArrayList<>();
+    List<String> lines = new ArrayList<>(); // creo una lista di stringhe e non un array di stringhe, perchè non so quanti elementi ci saranno
 
     try (Scanner s = new Scanner(System.in)) {
       while (s.hasNext()) {
-        final String linea = s.nextLine();
+        final String linea = s.nextLine(); // con final dico che la variabile linea non può essere riassegnata e modificata
         lines.add(linea);
       }
     }
@@ -67,8 +67,8 @@ public class BoundingBox {
       }
     }
   
-    int height = bottom - top + 1;
-    int width = right - left + 1;
+    int height = bottom - top + 1; // +1 perchè se top e bottom sono uguali, l'altezza è 1
+    int width = right - left + 1; // +1 perchè se left e right sono uguali, la larghezza è 1
   
     System.out.println(height + " " + width); 
   }

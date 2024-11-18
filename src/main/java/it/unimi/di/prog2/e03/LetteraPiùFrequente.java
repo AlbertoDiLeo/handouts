@@ -38,17 +38,17 @@ public class LetteraPiùFrequente {
         List<String> parole = new ArrayList<>();
 
     try (Scanner s = new Scanner(System.in)) {
-      while (s.hasNext()) {
+      while (s.hasNext()) { // finchè c'è un'altra parola
         final String parola = s.nextLine();
         parole.add(parola);
       }
     }
 
     int[] frequenze = new int[26];
-    for (String parola : parole) {
-      for (char c : parola.toCharArray()) {
+    for (String parola : parole) { 
+      for (char c : parola.toCharArray()) { // trasformo la stringa in un array di caratteri
         if (Character.isLetter(c)) {
-          frequenze[Character.toLowerCase(c) - 'a']++;
+          frequenze[Character.toLowerCase(c) - 'a']++; // trasformo il carattere in minuscolo e sottraggo il valore ASCII di 'a' per ottenere l'indice dell'array
         }
       }
     }
