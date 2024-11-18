@@ -38,7 +38,7 @@ public class SommaStrana {
   // se la lista è stata dichiarata come
   //
   // List<Integer> interi = new ArrayList<>(); => mutabile 
-  // => StringBuilder invece è immutabile
+  // => StringBuilder è mutabile
   //
   // sono legittime espressioni del tipo
   //
