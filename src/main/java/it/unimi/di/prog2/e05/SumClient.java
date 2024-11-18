@@ -22,6 +22,11 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 package it.unimi.di.prog2.e05;
 
 /** Esercizio 3.2 di PDJ. */
+/*
+ * Specifica e implementa un metodo con l'intestazione:
+ * public static int sum(int[] a)
+  che restituisce la somma degli elementi dell'array a.
+ */
 public class SumClient {
 
   /** . */

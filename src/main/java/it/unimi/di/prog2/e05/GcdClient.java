@@ -21,7 +21,33 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e05;
 
-/** Esercizio 3.1 di PDJ. */
+/** Esercizio 3.1 di PDJ. 
+ * "Calcolare il massimo comune divisore tramite sottrazioni ripetute (vedi Figura 2.1 nel Capitolo 2) 
+ * non è molto efficiente. Reimplementa la funzione gcd utilizzando la divisione al suo posto."*/
+
+/*    Figura 2.1
+          public class Num {
+            // Classe che fornisce utili routine numeriche
+            
+            public static int gcd(int n, int d) {
+                // REQUIRES: n e d devono essere maggiori di zero
+                // Il massimo comune divisore viene calcolato tramite sottrazioni ripetute
+                while (n != d) {
+                    if (n > d) {
+                        n = n - d;
+                    } else {
+                        d = d - n;
+                    }
+                }
+                return n;
+            }
+
+            public static boolean isPrime(int p) {
+                // L'implementazione va qui
+            }
+        }
+
+ */
 public class GcdClient {
 
   /** . */

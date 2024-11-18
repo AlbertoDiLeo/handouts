@@ -21,7 +21,10 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e05;
 
-/** Esercizio 3.3 di PDJ. */
+/** Esercizio 3.3 di PDJ. 
+ * Specifica e implementa una procedura isPrime che determina se un numero intero è primo.
+*/
+
 public class IsPrimeClient {
 
   /** . */
