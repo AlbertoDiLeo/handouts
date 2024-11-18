@@ -45,8 +45,8 @@ public class Saltapicchio {
 
     try (Scanner s = new Scanner(System.in)) {
       for (int i = 0; i < N; i++) {
-        if (s.hasNext()) { 
-          sequenza[i] = s.nextInt(); 
+        if (s.hasNextInt()) { // se non ci sono più interi, non leggo
+          sequenza[i] = s.nextInt(); // leggo un intero. assegno a sequenza[i] il valore letto
         }
       }
     }
