@@ -143,10 +143,6 @@ trovare il materiale nel
 * branch dell'[AA 2020/21](../../tree/aa2021),
 * branch dell'[AA 2021/22](../../tree/aa2122),
 * branch dell'[AA 2022/23](../../tree/aa2223),
-<<<<<<< HEAD
->>>>>>> 00101e2e0acaa1d78670bf2d38f93ce4b8edfe92
-* branch dell'[AA 2023/24](../../tree/aa2324).
-=======
 * branch dell'[AA 2023/24](../../tree/aa2324).
 
 ## Un prompt per la simulazione dell'esame orale (basata su AI)
@@ -162,4 +158,3 @@ La valutazione delle risposte fornite dall'AI è **esclusivamente indicativa** e
 non è affatto garantito che rispecchi la valutazione finale dell'esame; può ciò
 nonostante essere un accettabile punto di partenza per valutare la propria
 preparazione e la propria capacita di comunicare in modo chiaro e completo.
->>>>>>> f9affba57f61d83095c5cfe45cffd7eafacf3812
