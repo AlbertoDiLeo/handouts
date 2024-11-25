@@ -26,14 +26,38 @@ package it.unimi.di.prog2.e05;
 */
 
 public class IsPrimeClient {
+  // OVERVIEW: Classe che determina se un numero intero è primo.
 
   /** . */
   private IsPrimeClient() {}
+
+  public static boolean isPrime(int p) {
+    // REQUIRES: p deve essere un intero positivo
+    // EFFECTS: restituisce true se p è primo, false altrimenti
+    if (p < 2) return false;
+    for (int i = 2; i <= Math.sqrt(p); i++) {
+      if (p % i == 0) return false;
+    }
+    return true;
+  }
 
   // Aggiunga qui un main che invochi il metodo isPrime (che può sviluppare in
   // questa o altra classe) descritto dall'esercizio 3.3 di PDJ.
 
   // Il main riceve un intero come parametro sulla linea di comando ed emette
   // "true" nel flusso d'uscita se e solo se esso è primo.
+
+  // REQUIRE: args.length == 1
+  // MODIFIES: System.out
+  // EFFECTS: stampa "true" se l'argomento è un numero primo, "false" altrimenti
+
+  public static void main(String[] args) {
+    if (args.length != 1) {
+      System.err.println("Usage: java IsPrimeClient <number>");
+      System.exit(1);
+    }
+    int n = Integer.parseInt(args[0]);
+    System.out.println(isPrime(n));
+  }
 
 }
