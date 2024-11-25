@@ -45,7 +45,7 @@ public class CombineClient {
    *     separati da spazi.
    * @return gli interi contenuti nella stringa.
    */
-  private static int[] parseInts(String string) {
+  public static int[] parseInts(String string) {
     List<Integer> list = new ArrayList<>();
     try (Scanner sl = new Scanner(string)) {
       while (sl.hasNextInt()) list.add(sl.nextInt());
