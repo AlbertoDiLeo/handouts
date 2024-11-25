@@ -44,7 +44,8 @@ public class Radici {
     // L'implementazione si basa sul metodo di bisezione
     // https://en.wikipedia.org/wiki/Bisection_method
 
-    double low = 0, high = x > 1 ? x : 1, mid = -1;
+    double low = 0, high = x > 1 ? x : 1, mid = -1; //Se x è maggiore di 1, high viene inizializzato a x.
+                                                    //Se x è minore o uguale a 1, high viene inizializzato a 1.
     while (high - low > .00001) {
       mid = (high + low) / 2;
       if (mid * mid - x < 0) low = mid;
@@ -65,11 +66,20 @@ public class Radici {
    * @return l'approssimazione della radice quadrata se x è non negativo, altrimenti -1.
    */
   public static double radiceTotale(double x) {
-
     // Sapreste dare una implementazione basata sul metodo di Newton?
     // https://en.wikipedia.org/wiki/Newton's_method
     // Può essere d'aiuto la nota https://math.mit.edu/~stevenj/18.335/newton-sqrt.pdf
 
+    if (x < 0) {
+      return -1;
+    }
+    // Inizializzazione della stima iniziale
+    double y = x > 1 ? x : 1;
+
+    // Iterazione del metodo di Newton
+    while (Math.abs(y * y - x) > 0.001) {
+      y = (y + x / y) / 2;
+    }
     return x;
   }
 }

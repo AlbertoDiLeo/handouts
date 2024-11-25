@@ -43,6 +43,7 @@ public class RadiciClient {
         double x = s.nextDouble();
         double y = Radici.radiceParziale(x);
         System.out.println(Math.abs(y * y - x) < 0.001);
+        System.out.println(y);
       }
     }
   }
