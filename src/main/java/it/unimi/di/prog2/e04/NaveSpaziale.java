@@ -29,6 +29,8 @@ public class NaveSpaziale {
 
   /** . */
   private NaveSpaziale() {}
+  // private NaveSpaziale() perchè non voglio che venga creata un'istanza di questa classe
+  // non posso creare oggetti di questa classe perchè il costruttore è privato
 
   // Se String[] args è il vettore che contiene gli argomenti sulla linea
   // di comando, potete convertire i primi due in numeri interi con le

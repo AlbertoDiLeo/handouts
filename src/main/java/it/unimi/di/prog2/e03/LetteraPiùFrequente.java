@@ -33,6 +33,8 @@ public class LetteraPiùFrequente {
 
   /** . */
   private LetteraPiùFrequente() {}
+  // private LetteraPiùFrequente() perchè non voglio che venga creata un'istanza di questa classe
+  // non posso creare oggetti di questa classe perchè il costruttore è privato
 
   public static void main(String[] args) {
         List<String> parole = new ArrayList<>();

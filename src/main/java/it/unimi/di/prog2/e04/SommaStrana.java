@@ -32,6 +32,9 @@ public class SommaStrana {
 
   /** . */
   private SommaStrana() {}
+  // private SommaStrana() perchè non voglio che venga creata un'istanza di questa classe
+  // non posso creare oggetti di questa classe perchè il costruttore è privato
+
 
   // Per memorizzare un elenco di interi si può usare list<Integer>, grazie
   // all'boxing automatico https://dev.java/learn/numbers-strings/autoboxing/

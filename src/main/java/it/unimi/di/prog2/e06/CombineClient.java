@@ -27,9 +27,13 @@ import java.util.Scanner;
 
 /** Esercizio 4.4 di PDJ. */
 public class CombineClient {
+  // OVERVIEW: La classe CombineClient implementa la combinazione di due array di interi.
 
   /** . */
   private CombineClient() {}
+  // private CombineClient() perchè non voglio che venga creata un'istanza di questa classe
+  // // non posso creare oggetti di questa classe perchè il costruttore è privato
+ 
 
   /**
    * Decodifica una stringa contenente interi separati da spazi.

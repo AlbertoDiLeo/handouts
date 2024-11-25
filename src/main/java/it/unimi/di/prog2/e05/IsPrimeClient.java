@@ -30,6 +30,8 @@ public class IsPrimeClient {
 
   /** . */
   private IsPrimeClient() {}
+  // private IsPrimeClient() perchè non voglio che venga creata un'istanza di questa classe
+  // non posso creare oggetti di questa classe perchè il costruttore è privato
 
   /**
    * Metodo che determina se un numero intero è primo.

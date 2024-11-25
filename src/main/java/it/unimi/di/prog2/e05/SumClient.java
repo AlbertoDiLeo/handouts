@@ -32,6 +32,9 @@ public class SumClient {
 
   /** . */
   private SumClient() {}
+  // private SumClient() perchè non voglio che venga creata un'istanza di questa classe
+  // non posso creare oggetti di questa classe perchè il costruttore è privato
+
 
   /**
    * @param a array di interi

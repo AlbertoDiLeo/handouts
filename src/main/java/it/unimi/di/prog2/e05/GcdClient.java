@@ -56,6 +56,8 @@ public class GcdClient {
 
   /** . */
   private GcdClient() {}
+  // private GcdClient() perchè non voglio che venga creata un'istanza di questa classe
+  // non posso creare oggetti di questa classe perchè il costruttore è privato
 
     /**
      * Calcola il massimo comune divisore di due numeri interi.
