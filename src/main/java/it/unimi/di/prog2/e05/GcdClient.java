@@ -21,6 +21,8 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e05;
 
+import java.util.Scanner;
+
 /** Esercizio 3.1 di PDJ. 
  * "Calcolare il massimo comune divisore tramite sottrazioni ripetute (vedi Figura 2.1 nel Capitolo 2) 
  * non è molto efficiente. Reimplementa la funzione gcd utilizzando la divisione al suo posto."*/
@@ -49,14 +51,44 @@ package it.unimi.di.prog2.e05;
 
  */
 public class GcdClient {
+    // OVERVIEW: Classe che calcola il massimo comune divisore (GCD) di due numeri interi 
+    // utilizzando l'algoritmo Euclideo basato sulla divisione.
 
   /** . */
   private GcdClient() {}
+
+  public static int gcd(int n, int d) {
+    // REQUIRES: n e d devono essere maggiori di zero
+    // EFFECTS: Restituisce il massimo comune divisore di n e d
+    while (d != 0) {
+      int r = n % d;
+      n = d;
+      d = r;
+    }
+    return n;
+  }
 
   // Aggiunga qui un main che invochi il metodo gcd (che può sviluppare in
   // questa o altra classe) descritto dall'esercizio 3.1 di PDJ.
 
   // Il main legge dal flusso di ingresso coppie di numeri ed emette nel flusso
   // d'uscita il loro gcd.
+
+    public static void main(String[] args) {
+        // REQUIRES: Il flusso di ingresso deve contenere un numero pari di interi.
+        // MODIFIES: System.in, System.out
+        // EFFECTS: Legge coppie di numeri interi dal flusso di ingresso e stampa il loro GCD.
+        try (Scanner s = new Scanner(System.in)) {
+            while (s.hasNextInt()) {
+                int n = s.nextInt();
+                if (!s.hasNextInt()) {
+                    System.err.println("Numero dispari di input. Inserisci coppie di numeri.");
+                    return;
+                }
+                int d = s.nextInt();
+                System.out.println(gcd(n, d));
+            }
+        }
+    }
 
 }
