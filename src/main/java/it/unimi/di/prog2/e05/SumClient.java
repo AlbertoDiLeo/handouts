@@ -28,14 +28,38 @@ package it.unimi.di.prog2.e05;
   che restituisce la somma degli elementi dell'array a.
  */
 public class SumClient {
+  // OVERVIEW: Classe che calcola la somma degli elementi di un array di interi.
 
   /** . */
   private SumClient() {}
 
+  public static int sum(int[] a) {
+    // REQUIRES: a deve essere un array di interi e non nullo
+    // EFFECTS: restituisce la somma degli elementi dell'array a
+    int sum = 0;
+    for (int i = 0; i < a.length; i++) {
+      sum += a[i];
+    }
+    return sum;
+  }
+
   // Aggiunga qui un main che invochi il metodo sum (che può sviluppare in
   // questa o altra classe) descritto dall'esercizio 3.2 di PDJ.
 
-  // Il main riceve un elenco di interi come parametri sulla linea di comando e
+  // Il main riceve un elenco di interi come parametri da linea di comando e
   // ne emette la somma nel flusso d'ingresso.
+
+  // REQUIRES: Il flusso di ingresso deve contenere un elenco di numeri interi.
+  // MODIFIES: System.out
+  // EFFECTS: Legge un elenco di numeri interi dal flusso di ingresso e stampa la loro somma.
+  public static void main(String[] args) {
+
+    int[] a = new int[args.length]; // Converte i parametri della linea di comando in un array di interi
+    for (int i = 0; i < args.length; i++) {
+      a[i] = Integer.parseInt(args[i]);
+    }
+
+    System.out.println(sum(a));
+  }
 
 }
