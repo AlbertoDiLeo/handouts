@@ -57,6 +57,14 @@ public class GcdClient {
   /** . */
   private GcdClient() {}
 
+    /**
+     * Calcola il massimo comune divisore di due numeri interi.
+     *
+     * @param n il primo numero intero
+     * @param d il secondo numero intero
+     * @return il massimo comune divisore di {@code n} e {@code d}
+     */
+
   public static int gcd(int n, int d) {
     // REQUIRES: n e d devono essere maggiori di zero
     // EFFECTS: Restituisce il massimo comune divisore di n e d
@@ -73,6 +81,16 @@ public class GcdClient {
 
   // Il main legge dal flusso di ingresso coppie di numeri ed emette nel flusso
   // d'uscita il loro gcd.
+
+    /**
+     * Metodo client per il calcolo del massimo comune divisore.
+     *
+     * <p>Legge coppie di numeri interi dal flusso di ingresso e ne emette il massimo comune divisore
+     * nel flusso d'uscita.
+     *
+     * @param args non usato.
+     */
+    
 
     public static void main(String[] args) {
         // REQUIRES: Il flusso di ingresso deve contenere un numero pari di interi.

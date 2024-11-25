@@ -31,6 +31,13 @@ public class IsPrimeClient {
   /** . */
   private IsPrimeClient() {}
 
+  /**
+   * Metodo che determina se un numero intero è primo.
+   *
+   * @param p il numero intero da verificare
+   * @return {@code true} se il numero è primo, {@code false} altrimenti
+   */
+
   public static boolean isPrime(int p) {
     // REQUIRES: p deve essere un intero positivo
     // EFFECTS: restituisce true se p è primo, false altrimenti
@@ -50,6 +57,10 @@ public class IsPrimeClient {
   // REQUIRE: args.length == 1
   // MODIFIES: System.out
   // EFFECTS: stampa "true" se l'argomento è un numero primo, "false" altrimenti
+
+  /**
+   * @param args array di stringhe passate come argomenti sulla linea di comando
+   */
 
   public static void main(String[] args) {
     if (args.length != 1) {
