@@ -27,6 +27,7 @@ public class Polys {
   // See EJ 2.4
   /** . */
   private Polys() {}
+  // costruttore privato perchè non voglio che venga creata un'istanza di questa classe
 
   /**
    * Returns the derivative of the given polynomial.
@@ -37,7 +38,8 @@ public class Polys {
    */
   public static Poly diff(Poly p) throws NullPointerException {
     Poly q = new Poly();
-    for (int i = 1; i <= p.degree(); i++) q = q.add(new Poly(p.coeff(i) * i, i - 1));
+    for (int i = 1; i <= p.degree(); i++) q = q.add(new Poly(p.coeff(i) * i, i - 1));   // derivata di un polinomio => moltiplico il coefficiente per l'esponente e decremento l'esponente di 1
+
     return q;
   }
 }

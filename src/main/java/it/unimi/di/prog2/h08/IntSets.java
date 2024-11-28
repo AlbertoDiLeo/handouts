@@ -25,10 +25,14 @@ import java.util.Objects;
 
 /** A collection of methods for {@link IntSet}s. */
 public class IntSets {
+  // La classe IntSets è una classe di utilità che fornisce una raccolta di metodi statici per lavorare con oggetti di tipo IntSet.
+
 
   // See EJ 2.4
   /** . */
   private IntSets() {}
+  // costruttore privato perchè non voglio che venga creata un'istanza di questa classe
+  // => classe di utilità, non voglio che venga creata un'istanza di IntSets
 
   /**
    * Builds a set from an array of elements.

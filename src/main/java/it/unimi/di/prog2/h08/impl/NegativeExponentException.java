@@ -26,6 +26,10 @@ package it.unimi.di.prog2.h08.impl;
  * it.unimi.di.prog2.h08.Poly}.
  */
 public class NegativeExponentException extends IllegalArgumentException {
+  /*
+   * La classe NegativeExponentException è un'eccezione personalizzata che viene lanciata quando un'applicazione tenta di utilizzare un esponente negativo in un oggetto della classe Poly (presumibilmente una classe che rappresenta un polinomio).
+   * Estendendo IllegalArgumentException, questa eccezione indica che un metodo ha ricevuto un argomento illegale o inappropriato, in questo caso, un esponente negativo.
+   */
 
   /** THe serial version. */
   static final long serialVersionUID = 1L;

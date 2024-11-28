@@ -24,7 +24,7 @@ package it.unimi.di.prog2.h08;
 import it.unimi.di.prog2.h08.impl.NegativeExponentException;
 
 /**
- * {@code Poly}s are immutable polynomials with integer coefficients.
+ * {@code Poly}s are immutable polynomials with integer coefficients. !!IMMUTABILE
  *
  * <p>A typical {@code Poly} is \( p = c_0 + c_1 x + c_2 x^2 + \cdots + c_n x^n \).
  */
@@ -32,7 +32,7 @@ public class Poly {
 
   // Constructors
 
-  /** Initializes this to be the zero polynomial, that is \( p = 0 \). */
+  /** Initializes this to be the zero polynomial, that is \( p = 0 \). polinomio zero */
   public Poly() {}
 
   /**
@@ -46,7 +46,10 @@ public class Poly {
 
   /**
    * A factory method returning a monomial. (see EJ 2.1)
-   *
+   * Un factory method (metodo di fabbrica) è un metodo statico che ritorna un'istanza di una classe (Poly).
+   * Possono avere nomi descrittivi che chiariscono l'intento della creazione dell'oggetto
+   * uso un factory method e non una sottoclasse di Poly perchè un monomio non ha bisogno di metodi in più rispetto a Poly
+   * 
    * @param c the coefficient.
    * @param n the degree.
    * @throws NegativeExponentException if {@code n} &lt; 0.

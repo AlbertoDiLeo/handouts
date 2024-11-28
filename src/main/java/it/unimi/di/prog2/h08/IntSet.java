@@ -24,13 +24,15 @@ package it.unimi.di.prog2.h08;
 import it.unimi.di.prog2.h08.impl.EmptyException;
 
 /**
- * {@code IntSet}s are mutable, unbounded sets of integers.
+ * {@code IntSet}s are mutable, unbounded sets of integers. !!MUTABILE
  *
  * <p>A typical IntSet is \( S = \{x_1, \ldots, x_n \} \).
  */
 public class IntSet {
 
   // Constructors
+  // Il nome del costruttore è sempre lo stesso nome della classe.
+  // I costruttori non hanno un tipo di ritorno, nemmeno void.
 
   /**
    * Initializes this set to be empty.
