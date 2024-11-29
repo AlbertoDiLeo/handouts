@@ -108,14 +108,20 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
       for (int k = degree(); k > 0; k--)
         if (coefficient[k] + q.coefficient[k] != 0) break;
         else resultDegree--;
+        // devo diminuire il grado del polinomio risultante perchè i coefficienti di grado maggiore sono nulli
     }
     Poly result = new Poly(resultDegree); // get a new Poly
     int i;
-    for (i = 0; i <= smaller.degree() && i <= resultDegree; i++)
+    for (i = 0; i <= smaller.degree() && i <= resultDegree; i++) // La somma dei termini deve essere eseguita solo per i gradi che esistono in entrambi i polinomi e che sono validi nel polinomio risultante.
       result.coefficient[i] = smaller.coefficient[i] + larger.coefficient[i];
     for (int j = i; j <= resultDegree; j++) result.coefficient[j] = larger.coefficient[j];
     return result;
   }
+  /*
+   * Il primo ciclo for somma i termini comuni ai due polinomi, cioè i termini fino al grado del polinomio più piccolo. Questo garantisce che tutti i termini comuni siano sommati correttamente.
+   * Il secondo ciclo for copia i termini rimanenti del polinomio più grande nel polinomio result. Questo è necessario perché il polinomio più grande potrebbe avere termini che il polinomio più piccolo non ha.
+   * 
+   */
 
   /**
    * Performs polynomial multiplication.

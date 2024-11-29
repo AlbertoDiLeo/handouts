@@ -117,7 +117,14 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
    * @throws NullPointerException if {@code q} is {@code null}.
    */
   public Poly add(Poly q) throws NullPointerException {
-    return null; // add missing implementation
+    if (q == null) throw new NullPointerException();
+    Poly r = new Poly(Math.max(deg, q.deg));
+    for (int i = 0; i <= r.deg; i++) {
+      int coeffThis = (i <= deg) ? terms[i] : 0; // if i > deg, coeffThis = 0
+      int coeffQ = (i <= q.deg) ? q.terms[i] : 0; // if i > q.deg, coeffQ = 0
+      r.terms[i] = coeffThis + coeffQ;
+    }
+    return r; 
   }
 
   /**

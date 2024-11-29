@@ -21,6 +21,8 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.h09;
 
+import java.util.Objects;
+
 import it.unimi.di.prog2.h08.impl.NegativeExponentException;
 
 /**
@@ -138,9 +140,37 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
    * @return the sum among this and the given polynomial.
    * @throws NullPointerException if {@code q} is {@code null}.
    */
-  public Poly add(Poly q) throws NullPointerException {
-    throw new UnsupportedOperationException("Not yet implemented");
+  public Poly add(Poly q) throws NullPointerException { //soluzione del prof
+    Objects.requireNonNull(q, "The polynomial must not be null."); // Objects.requireNonNull è utilizzato per verificare che un riferimento non sia null. Se il riferimento è null, lancia una NullPointerException con un messaggio
+    // UnsupportedOperationException è utilizzata per indicare che un'operazione non è supportata. Questo è tipicamente usato per metodi che non sono implementati o che non dovrebbero essere chiamati in un certo contesto.
+    // Lanciare un'UnsupportedOperationException non sarebbe appropriato in questo contesto perché l'operazione di aggiunta è supportata, ma l'argomento q non deve essere null.
+    final Poly larger, smaller; // Indica chiaramente che larger e smaller sono destinati a essere utilizzati come riferimenti costanti all'interno del metodo.
+    if (degree() > q.degree()) {
+      larger = this;
+      smaller = q;
+    } else {
+      larger = q;
+      smaller = this;
+    }
+    int resultDegree = larger.degree();
+    if (degree() == q.degree()) {
+      for (int k = degree(); k > 0; k--)
+        if (coefficient[k] + q.coefficient[k] != 0) break;
+        else resultDegree--;
+        // devo diminuire il grado del polinomio risultante perchè i coefficienti di grado maggiore sono nulli
+    }
+    Poly result = new Poly(resultDegree); // get a new Poly
+    int i;
+    for (i = 0; i <= smaller.degree() && i <= resultDegree; i++) // La somma dei termini deve essere eseguita solo per i gradi che esistono in entrambi i polinomi e che sono validi nel polinomio risultante.
+      result.coefficient[i] = smaller.coefficient[i] + larger.coefficient[i];
+    for (int j = i; j <= resultDegree; j++) result.coefficient[j] = larger.coefficient[j];
+    return result;
   }
+  /*
+   * Il primo ciclo for somma i termini comuni ai due polinomi, cioè i termini fino al grado del polinomio più piccolo. Questo garantisce che tutti i termini comuni siano sommati correttamente.
+   * Il secondo ciclo for copia i termini rimanenti del polinomio più grande nel polinomio result. Questo è necessario perché il polinomio più grande potrebbe avere termini che il polinomio più piccolo non ha.
+   * 
+   */
 
   /**
    * Performs polynomial multiplication.
