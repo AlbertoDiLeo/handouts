@@ -36,6 +36,11 @@ public class IntSet {
 
   /** The {@link List} containing this set elements. */
   private final List<Integer> els;
+  // Rendere il campo els privato garantisce che l'accesso diretto alla lista sia limitato alla classe IntSet
+  // Dichiarare il campo els come final garantisce che il riferimento alla lista non possa essere cambiato dopo 
+  // l'inizializzazione. Anche se la lista stessa è mutabile, il riferimento rimane costante, il che aiuta a prevenire errori accidentali dove il riferimento potrebbe essere riassegnato.
+  // Anche se la lista è mutabile, mantenendo il campo privato, puoi fornire metodi pubblici che controllano come la lista viene modificata. Questo ti permette di aggiungere logica aggiuntiva, 
+  // come evitare duplicati o mantenere l'ordine degli elementi.
 
   // Constructors
 
@@ -47,6 +52,7 @@ public class IntSet {
   public IntSet() {
     els = new ArrayList<>();
   }
+  // Il costruttore è il luogo dove vengono inizializzati i campi di un oggetto. In questo caso, il costruttore IntSet assicura che els sia inizializzato come una nuova lista vuota ogni volta che viene creato un nuovo oggetto IntSet.
 
   // Methods
 
@@ -71,6 +77,8 @@ public class IntSet {
   public void insert(int x) {
     if (getIndex(x) < 0) els.add(x);
   }
+  // modifica la lista
+  // Questo controllo è necessario per garantire che l'insieme non contenga duplicati
 
   /**
    * Removes the given element from this set.
@@ -86,6 +94,7 @@ public class IntSet {
     els.set(i, els.get(last));
     els.remove(last);
   }
+  // modifica la lista
 
   /**
    * Tells if the given element is in this set.
@@ -113,7 +122,7 @@ public class IntSet {
   /**
    * Returns an element from this set.
    *
-   * @return an arbitrary element from this set.
+   * @return an arbitrary element from this set. (l'elemento scelto è l'ultimo elemento della lista)
    * @throws EmptyException if this set is empty.
    */
   public int choose() throws EmptyException {

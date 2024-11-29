@@ -40,7 +40,7 @@ public class PolyClient {
    * @param args not used.
    */
   public static void main(String[] args) {
-    Poly result = new Poly(1, 0);
+    Poly result = new Poly(1, 0); // 1
     try (Scanner s = new Scanner(System.in)) {
       while (s.hasNextInt()) {
         Poly term = Poly.monomialWithCoeffAndDegree(s.nextInt(), s.nextInt());
@@ -49,4 +49,15 @@ public class PolyClient {
     }
     for (int d = 0; d <= result.degree(); d++) System.out.println(result.coeff(d) + " " + d);
   }
+
+  /*
+   * esempio di input/output:
+   * 2 1 => 2x
+   * 3 2 => 3x^2
+   * result => 2x * 3x^2 = 6x^3
+   * 0 0
+   * 0 1
+   * 0 2
+   * 6 3
+   */
 }

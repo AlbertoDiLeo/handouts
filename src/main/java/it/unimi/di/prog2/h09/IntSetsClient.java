@@ -54,4 +54,5 @@ public class IntSetsClient {
       set.remove(x);
     }
   }
+  // Questo programma dimostra l'uso di IntSet per gestire un insieme di interi e verifica la presenza degli elementi sia nella lista che nell'insieme, stampando messaggi appropriati.
 }
