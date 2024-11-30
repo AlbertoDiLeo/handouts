@@ -86,6 +86,9 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
 
   /**
    * A factory method returning a monomial. (see EJ 2.1)
+   * 
+   * Un factory method (metodo di fabbrica) è un metodo statico (puo anche non esserlo) che ritorna un'istanza di una classe (Poly).
+   * Possono avere nomi descrittivi che chiariscono l'intento della creazione dell'oggetto
    *
    * @param c the coefficient.
    * @param n the degree.
@@ -95,6 +98,12 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
   public static Poly monomialWithCoeffAndDegree(int c, int n) {
     return new Poly(c, n);
   }
+
+  /*
+   * STATICO: non dipende dallo stato di un'istanza specifica della classe. Può essere chiamato direttamente sulla classe (ESEMPIO: Poly.monomialWithCoeffAndDegree(3, 2))
+   * NON STATICO: dipende dallo stato di un'istanza specifica della classe. Deve essere chiamato su un'istanza della classe (ESEMPIO: Poly poly = new Poly(); poly.degree())
+   * 
+   */
 
   /**
    * Returns the degree of this polynomial.

@@ -46,7 +46,7 @@ public class Poly {
 
   /**
    * A factory method returning a monomial. (see EJ 2.1)
-   * Un factory method (metodo di fabbrica) è un metodo statico che ritorna un'istanza di una classe (Poly).
+   * Un factory method (metodo di fabbrica) è un metodo statico (non per forza) che ritorna un'istanza di una classe (Poly).
    * Possono avere nomi descrittivi che chiariscono l'intento della creazione dell'oggetto
    * uso un factory method e non una sottoclasse di Poly perchè un monomio non ha bisogno di metodi in più rispetto a Poly
    * 

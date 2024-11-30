@@ -74,6 +74,8 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
     return coefficient.length - 1;
   }
 
+  // tolto il metodo di fabbrica monomialWithCoeffAndDegree probabilmente per ridondanza
+
   /**
    * Returns the coefficient of the term of given exponent.
    *
