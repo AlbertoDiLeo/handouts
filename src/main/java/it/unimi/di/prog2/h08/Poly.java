@@ -26,6 +26,13 @@ import it.unimi.di.prog2.h08.impl.NegativeExponentException;
 /**
  * {@code Poly}s are immutable polynomials with integer coefficients. !!IMMUTABILE
  *
+ * I polinomi sono spesso trattati come entità matematiche che non cambiano una volta definite. 
+ * Un polinomio rappresenta una funzione matematica specifica, e rendere la classe Poly immutabile riflette questa natura immutabile.
+ * 
+ * Quando diciamo che lo stato di una classe immutabile non cambia, intendiamo che nessuno dei suoi campi 
+ * può essere modificato dopo che l'oggetto è stato creato. Questo significa che tutti i campi sono finali 
+ * e non ci sono metodi che possono alterare i valori di questi campi dopo l'inizializzazione
+ * 
  * <p>A typical {@code Poly} is \( p = c_0 + c_1 x + c_2 x^2 + \cdots + c_n x^n \).
  */
 public class Poly {

@@ -91,7 +91,7 @@ public class IntSet {
     int i = getIndex(x);
     if (i < 0) return;
     int last = els.size() - 1;
-    els.set(i, els.get(last));
+    els.set(i, els.get(last)); // sposto l'elemento da rimuovere alla fine. Questo è un modo efficiente per rimuovere un elemento senza dover spostare tutti gli elementi successivi di una posizione.
     els.remove(last);
   }
   // modifica la lista

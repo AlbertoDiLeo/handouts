@@ -31,6 +31,8 @@ import java.util.Objects;
  * <p>A typical {@code Poly} is \( p = c_0 + c_1 x + c_2 x^2 + \cdots + c_n x^n \).
  */
 public class Poly { // we don't extend Cloneable, see EJ 3.13
+  // Poiché lo stato di un oggetto immutabile non cambia, non c'è bisogno di creare copie per evitare modifiche accidentali. 
+  // Ogni volta che è necessario un nuovo stato, si crea un nuovo oggetto.
 
   /** The array of coefficients, the {@code coeff[i]} is the coefficient of \( x^i \). */
   private final int[] coefficient;
@@ -171,12 +173,16 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
   public boolean equals(Object o) {
     if (o == this) return true;
     if (!(o instanceof Poly)) return false;
-    Poly q = (Poly) o;
-    if (degree() != q.degree()) return false;
+    Poly q = (Poly) o; // Dopo aver verificato che o è un'istanza di Poly, viene eseguito un casting per trattare o come un oggetto Poly.
+    if (degree() != q.degree()) return false; // non basta controllare gli elementi dei due array?
     return Arrays.equals(coefficient, q.coefficient);
   }
 
   @Override
+  /*
+   * Il metodo Objects.hash è una utility fornita dalla classe java.util.Objects che calcola un codice hash per una sequenza di valori. Questo metodo accetta un numero variabile di argomenti e calcola un codice hash combinato per tutti gli argomenti forniti.
+   * In questo caso, Objects.hash calcola un codice hash combinato per il grado del polinomio (degree()) e l'array dei coefficienti (coefficient).
+   */
   public int hashCode() {
     return Objects.hash(degree(), coefficient);
   }
@@ -186,13 +192,13 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
     if (degree() > 0) {
       StringBuilder sb = new StringBuilder("Poly: ");
       int c = coefficient[degree()];
-      if (c < -1) sb.append("-" + (-c));
-      else if (c == -1) sb.append("-");
+      if (c < -1) sb.append("-" + (-c)); // aggiunge il segno meno e il coefficiente
+      else if (c == -1) sb.append("-"); // aggiunge il segno meno senza coefficientedato che è uno
       else if (c > 1) sb.append(c);
-      sb.append("x" + (degree() > 1 ? "^" + degree() : ""));
+      sb.append("x" + (degree() > 1 ? "^" + degree() : "")); // aggiunge la x e l'esponente
       for (int d = degree() - 1; d > 0; d--) {
         c = coefficient[d];
-        if (c == 0) continue;
+        if (c == 0) continue; // se il coefficiente è zero, passa al prossimo ciclo
         if (c < -1) sb.append(" - " + (-c));
         else if (c == -1) sb.append(" - ");
         else if (c == 1) sb.append(" + ");
@@ -200,9 +206,9 @@ public class Poly { // we don't extend Cloneable, see EJ 3.13
         sb.append("x" + (d > 1 ? "^" + d : ""));
       }
       c = coefficient[0];
-      if (c > 0) sb.append(" + " + c);
+      if (c > 0) sb.append(" + " + c); // aggiunge il termine noto
       else if (c < 0) sb.append(" - " + (-c));
       return sb.toString();
-    } else return "Poly: " + coefficient[0];
+    } else return "Poly: " + coefficient[0]; // se il grado è zero, restituisce solo il termine noto
   }
 }

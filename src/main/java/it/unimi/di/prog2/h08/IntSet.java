@@ -26,6 +26,9 @@ import it.unimi.di.prog2.h08.impl.EmptyException;
 /**
  * {@code IntSet}s are mutable, unbounded sets of integers. !!MUTABILE
  *
+ *  Gli insiemi di interi (IntSet) sono spesso utilizzati in contesti 
+ *  dove gli elementi possono essere aggiunti o rimossi dinamicamente. Rendere IntSet mutabile riflette questa natura dinamica degli insiemi.
+ * 
  * <p>A typical IntSet is \( S = \{x_1, \ldots, x_n \} \).
  */
 public class IntSet {
