@@ -33,11 +33,14 @@ public class BoundedIntQueueClient {
    * <p>Reads a list of integers from the standard input; if a positive number is read, it is added
    * to a bounded queue of size 10; if a negative number is read, it is dequeued and emitted on the
    * standard output. When the input terminates, the queue is emitted on the standard output.
+   * 
+   * <p>Legge una lista di numeri interi dall'input standard; se viene letto un numero positivo, viene aggiunto
+   * a una coda limitata di dimensione 10; se viene letto un numero negativo, viene rimosso dalla coda e
+   * emesso sull'output standard. Quando l'input termina, la coda viene emessa sull'output standard.
    *
    * @param args not used.
    */
 
-  /* - Uncomment the following after completing the implementation of BoundedIntQueue
 
    public static void main(String[] args) {
     BoundedIntQueue queue = new BoundedIntQueue(10);
@@ -51,5 +54,4 @@ public class BoundedIntQueueClient {
     System.out.println(queue);
   }
 
-  */
 }
