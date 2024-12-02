@@ -21,8 +21,6 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e10;
 
-import java.util.Arrays;
-
 /**
  * A <em>queue</em> is a mutable data structure that provides access to its elements in
  * first-in/first-out order.
@@ -64,6 +62,13 @@ public class BoundedIntQueue {
   /** L'array che contiene gli elementi di questa coda. */
   private final int[] elements;
 
+  // CAMPI head e tail UTILI PER STABILIRE SE UNA CODA è PIENA OPPURE NO (non li avevo messi)
+  /** The index in {@link #elements} of the first queue element (or -1 if the queue is empty). */
+  private int head;
+
+  /** The index of the first free position in {@link #elements} (if the queue is not full). */
+  private int tail;
+
   // Constructors
   /**
    * Creates a new bounded queue with the given capacity.
@@ -72,10 +77,12 @@ public class BoundedIntQueue {
    * @throws IllegalArgumentException if {@code capacity} is negative.
    */
   public BoundedIntQueue(int capacity) {
-    if (capacity < 0) {
+    if (capacity <= 0) {
       throw new IllegalArgumentException("capacity must be non-negative");
     }
     elements = new int[capacity];
+    head = -1;
+    tail = 0;
   }
 
 
@@ -92,13 +99,20 @@ public class BoundedIntQueue {
     if (isFull()) {
       throw new IllegalStateException("queue is full");
     }
-    // Find the first empty slot
-    int i = 0;
-    while (elements[i] != 0) {
-      i++;
-    }
-    elements[i] = x;
+    if (head == -1) head = 0; // fatto dal prof
+    // se la coda è vuota, significa che questo è il primo elemento che viene aggiunto. Lo head quindi diventa 0 per indicare l'inizio dells coda
+    elements[tail] = x;
+    tail = (tail + 1) % elements.length;
   }
+  /*
+   * L'indice tail viene incrementato di 1 e poi viene calcolato il modulo con la lunghezza dell'array (elements.length). 
+   * Questo assicura che tail "avvolga" all'inizio dell'array quando raggiunge la fine, mantenendo il comportamento circolare del buffer.
+   * Supponiamo che la lunghezza dell'array elements sia 5 e che tail sia 4.
+   * Dopo aver aggiunto un elemento alla posizione 4, tail diventa (4 + 1) % 5 = 0.
+   * Questo significa che il prossimo elemento verrà aggiunto alla posizione 0, avvolgendo l'array.
+   */
+
+
 
   /**
    * Removes the element at the head of the queue. (rimuove l'elemento in testa alla coda, all'inizio della coda)
@@ -110,12 +124,13 @@ public class BoundedIntQueue {
     if (isEmpty()) {
       throw new IllegalStateException("queue is empty");
     }
-    int head = elements[0];
-    // Shift all elements to the left
-    for (int i = 0; i < elements.length - 1; i++) {
-      elements[i] = elements[i + 1];
+    final int r = elements[head];
+    head = (head + 1) % elements.length; // fatto dal prof
+    if (head == tail) {
+      head = -1;
+      tail = 0;
     }
-    return head;
+    return r;
   }
 
 
@@ -124,14 +139,8 @@ public class BoundedIntQueue {
     *
     * @return {@code true} if the queue is full, {@code false} otherwise.
     */
-  public boolean isFull() {
-    // Assuming the queue is full when all elements are non-zero
-    for (int element : elements) {
-      if (element == 0) {
-        return false;
-      }
-    }
-      return true;
+    public boolean isFull() {
+      return tail == head;
     }
 
 
@@ -141,8 +150,21 @@ public class BoundedIntQueue {
    * @return {@code true} if the queue is empty, {@code false} otherwise.
    */
   public boolean isEmpty() {
-    if (elements.length == 0) return true;
-    return false;
+    return head == -1;
+  }
+
+
+  /**
+   * Returns the number of elements in the queue.
+   * Restituisce il numero di elementi nella coda e non la lunghezza dell'array.
+   * IMPORTANTE (non avevo messo il metodo size)
+   *
+   * @return the number of elements.
+   */
+  public int size() {
+    if (isEmpty()) return 0;
+    if (isFull()) return elements.length;
+    return (tail - head + elements.length) % elements.length;
   }
 
 
@@ -150,32 +172,42 @@ public class BoundedIntQueue {
   public boolean equals(Object obj) {
     if (this == obj) return true;
     if (!(obj instanceof BoundedIntQueue other)) return false;
-    if (elements.length != other.elements.length) return false;
-    for (int i = 0; i < elements.length; i++) {
-      if (elements[i] != other.elements[i]) return false;
+    if (size() != other.size()) return false;
+    int i = head, j = other.head, n = 0; // fatta dal prof
+    while (n < size()) {
+      if (elements[i] != other.elements[j]) return false;
+      i = (i + 1) % elements.length;
+      j = (j + 1) % other.elements.length;
+      n += 1;
     }
     return true;
   }
 
   @Override
-  public int hashCode() {
-    return Arrays.hashCode(elements);
+  public int hashCode() { // fatta dal prof
+    int result = 0;
+    int i = head, n = 0;
+    while (n < size()) {
+      result = 31 * result + Integer.hashCode(elements[i]);
+      // Il fattore 31 è comunemente usato nelle funzioni hash per distribuire meglio i valori hash.
+      i = (i + 1) % elements.length;
+      n += 1;
+    }
+    return result;
   }
 
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder("BoundedIntQueue: [");
-    for (int i = 0; i < elements.length; i++) {
-      if (elements[i] == 0) {
-        break;
-      }
-      sb.append(elements[i]);
-      if (elements[i + 1] != 0) {
-        sb.append(", ");
-      }
+    if (isEmpty()) return "BoundedIntQueue: []";
+    final StringBuilder sb = new StringBuilder("BoundedIntQueue: [");
+    int i = head, n = 0;
+    while (n < size() - 1) {
+      sb.append(elements[i] + ", ");
+      i = (i + 1) % elements.length;
+      n += 1;
     }
-    sb.append("]");
+    sb.append(elements[i] + "]");
     return sb.toString();
   }
 
