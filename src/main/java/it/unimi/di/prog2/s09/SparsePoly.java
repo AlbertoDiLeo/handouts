@@ -60,7 +60,7 @@ public class SparsePoly {
 
   /** Initializes this to be the zero polynomial, that is \( p = 0 \). */
   public SparsePoly() {
-    terms = Collections.emptyList();
+    terms = Collections.emptyList(); // lista immutabile vuota
   }
 
   /**
