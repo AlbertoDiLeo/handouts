@@ -53,6 +53,19 @@ public class RationalNumber {
   public final int denominator;
 
 
+  /*-
+   * AF:
+   *
+   *   AF(numerator, denominator) = numerator/denominator
+   *
+   * RI:
+   *
+   *  - denominator > 0
+   *  - gcd(numerator, denominator) == 1
+   *
+   */
+
+
   // CONSTRUCTORS
 
   /**

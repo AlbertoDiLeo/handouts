@@ -37,6 +37,20 @@ public class IntSet {
   /** The {@link List} containing this set elements. */
   private final List<Integer> els;
 
+  /*
+   * L'Abstraction Function (Funzione di Astrazione) descrive come lo stato interno di un oggetto (la rappresentazione concreta) mappa su un valore astratto che l'oggetto rappresenta. 
+   * In altre parole, l'AF spiega come interpretare i campi di un oggetto come un valore dell'astrazione.
+   * l'AF descrive come la lista els rappresenta un insieme di numeri interi. La funzione di astrazione dice che l'insieme astratto rappresentato dall'oggetto IntSet è costituito dagli elementi della lista els.
+   * 
+   * Il Representation Invariant (Invariante di Rappresentazione) è una condizione che deve essere sempre vera per lo stato interno di un oggetto affinché l'oggetto sia valido. 
+   * L'RI definisce le proprietà che la rappresentazione concreta deve soddisfare per essere una rappresentazione valida del valore astratto.
+   * i può dire che il Representation Invariant (RI) viene utilizzato prevalentemente per garantire che i campi di una classe mantengano uno stato valido. 
+   * L'RI definisce le proprietà che devono essere sempre vere per lo stato interno di un oggetto affinché l'oggetto sia considerato valido.
+   */
+
+   // l Representation Invariant (RI) definisce le condizioni che devono essere sempre vere per lo stato interno di un oggetto affinché l'oggetto sia considerato valido. Tuttavia, il RI da solo non garantisce che queste condizioni siano rispettate;
+   // è responsabilità del programmatore assicurarsi che il codice rispetti l'RI.
+
   /*-
    * AF:
    *
@@ -44,8 +58,8 @@ public class IntSet {
    *
    * RI:
    *
-   *  - els != null and does not contain nulls,
-   *  - els does not contain duplicates.
+   *  - els != null and does not contain nulls, (els non deve essere null e non deve contenere elementi null)
+   *  - els does not contain duplicates. (els non deve contenere duplicati)
    *
    */
 
