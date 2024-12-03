@@ -21,6 +21,8 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e10;
 
+import java.util.Objects;
+
 /**
  * A rational number is an immutable number that can be expressed as the quotient or fraction \( p/q
  * \) of two {@code int}s, a numerator \( p \) and a non-zero denominator \( q \).
@@ -45,10 +47,10 @@ public class RationalNumber {
   // FIELDS
 
   /** il numeratore del numero razionale */
-  private int numerator;
+  public final int numerator; // PERCHÉ PUBLIC?
 
   /** il denominatore del numero razionale */
-  private int denominator;
+  public final int denominator;
 
 
   // CONSTRUCTORS
@@ -58,19 +60,46 @@ public class RationalNumber {
    *
    * @param numerator the numerator.
    * @param denominator the denominator.
+   * @throws IllegalArgumentException if {@code denominator} is zero.
+   * @throws IllegalArgumentException if the numerator or the denominator reduced to minimum terms
+   *     are too large to be represented as {@code int}s. fatto dal prof
+
    */
-  public RationalNumber(int numerator, int denominator) {
+  public RationalNumber(long numerator, long denominator) {
     if (denominator == 0) {
       throw new IllegalArgumentException("Denominatore nullo");
     }
-    int mcd = MCD(numerator, denominator);
-    this.numerator = numerator / mcd;
-    this.denominator = denominator / mcd;
-
-    if (this.denominator < 0) {
-      this.numerator = -this.numerator;
-      this.denominator = -this.denominator;
+    if (denominator < 0) {
+      numerator = -numerator;
+      denominator = -denominator;
     }
+    long mcd = MCD(numerator > 0 ? numerator : -numerator, denominator > 0 ? denominator : -denominator); // (numerator, denominator)
+    // non chiaro del perchè ci sia bisogno di fare questo controllo, perchè non usare Math.abs se non vogliamo i segni?
+    long reducedNumerator = numerator / mcd;
+    long reducedDenominator = denominator / mcd;
+
+    /*if (reducedNumerator < Integer.MIN_VALUE || reducedNumerator > Integer.MAX_VALUE) // fatto dal prof
+      throw new IllegalArgumentException(
+          "numerator (reduced to minimum terms) " + reducedNumerator + " does not fit into an int");
+    if (reducedDenominator > Integer.MAX_VALUE)
+      throw new IllegalArgumentException(
+          "denominator (reduced to minimum terms) "
+              + reducedDenominator
+              + " does not fit into an int"); */
+
+    this.numerator = (int) reducedNumerator;
+    this.denominator = (int) reducedDenominator;
+
+    
+  }
+
+  /**
+   * Creates a new integer number.
+   *
+   * @param value the value.
+   */
+  public RationalNumber(int value) {
+    this(value, 1);
   }
 
 
@@ -84,10 +113,12 @@ public class RationalNumber {
    * @return the sum of this rational number and {@code other}.
    */
   public RationalNumber add(RationalNumber other) {
-    if (this.denominator == other.denominator) {
-      return new RationalNumber(this.numerator + other.numerator, this.denominator);
+    if (this.denominator == other.denominator) { // il prof non usa questo if
+      return new RationalNumber((long) this.numerator + other.numerator, (long) this.denominator);
     } else {
-      return new RationalNumber(this.numerator * other.denominator + other.numerator * this.denominator, this.denominator * other.denominator);
+      return new RationalNumber(
+        (long) this.numerator * other.denominator + other.numerator * this.denominator, 
+        (long) this.denominator * other.denominator);
     }
   }
 
@@ -98,7 +129,35 @@ public class RationalNumber {
    * @return the product of this rational number and {@code other}.
    */
   public RationalNumber mul(RationalNumber other) {
-    return new RationalNumber(this.numerator * other.numerator, this.denominator * other.denominator);
+    return new RationalNumber( 
+      (long) this.numerator * other.numerator, (long) this.denominator * other.denominator);
+  }
+
+  /**
+   * Tells whether this rational number is an integer.
+   *
+   * @return {@code true} if this rational number is an integer, {@code false} otherwise.
+   */
+  public boolean isInteger() { // fatto dal prof
+    return denominator == 1;
+  }
+
+  /**
+   * Tells whether this rational number is positive.
+   *
+   * @return {@code true} if this rational number is positive, {@code false} otherwise.
+   */
+  public boolean isPositive() { // fatto dal prof
+    return numerator > 0;
+  }
+
+  /**
+   * Tells whether this rational number is equal to zero.
+   *
+   * @return {@code true} if this rational number is zero, {@code false} otherwise.
+   */
+  public boolean isZero() { // fatto dal prof
+    return numerator == 0;
   }
 
   /**
@@ -108,32 +167,33 @@ public class RationalNumber {
    * @param b the second integer.
    * @return the greatest common divisor of {@code a} and {@code b}.
    */
-  private static int MCD(int a, int b) {
-    while (b != 0) {
-      int temp = b;
-      b = a % b;
-      a = temp;
+  private long MCD(long a, long b) { // usare long per evitare overflow
+    while (b > 0) {
+      long r = a % b;
+      a = b;
+      b = r;
     }
-    return Math.abs(a);
+    return a;
   }
 
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    RationalNumber other = (RationalNumber) o;
+    if (!(o instanceof RationalNumber other)) return false;
     return numerator == other.numerator && denominator == other.denominator;
+    // Why the following is not correct?
+    // return (double) numerator / denominator == (double) other.numerator / other.denominator;
+    // Il confronto di numeri razionali usando la divisione in double non è affidabile a causa della precisione limitata dei numeri in virgola mobile e degli errori di arrotondamento.
   }
 
   @Override
   public int hashCode() {
-    int result = numerator;
-    result = 31 * result + denominator;
-    return result;
+    return Objects.hash(numerator, denominator);
   }
 
   @Override
   public String toString() {
+    if (denominator == 1) return Integer.toString(numerator);
     return numerator + "/" + denominator;
   }
 }
