@@ -21,6 +21,8 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 package it.unimi.di.prog2.e10;
 
+import java.util.Scanner;
+
 /** A class to exercise a {@link RationalNumber}. */
 public class RationalNumberClient {
 
@@ -40,11 +42,19 @@ public class RationalNumberClient {
    * @param args the numerator and denominator of the resulting fraction.
    */
 
-  /* - Uncomment the following after completing the implementation of RationalNumber
+   /**
+    * <p>Legge una lista di coppie di numeri interi dall'input standard, corrispondenti al numeratore
+    * e al denominatore di una sequenza di numeri razionali \( q_i \). Calcola la sequenza di
+    * numeri razionali data da \( r_0 = 0 \) e \( r_{i+1} = q_i + r_i \cdot q_i \). Poi confronta
+    * l'ultimo numero razionale calcolato con il numero razionale dato dalla coppia di numeri interi
+    * forniti come argomenti della riga di comando, emettendo <samp>true</samp> sull'output standard
+    * se sono uguali, <samp>false</samp> altrimenti.
+    * @param args
+    */
+
 
   public static void main(String[] args) {
-    RationalNumber expected =
-        new RationalNumber(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+    RationalNumber expected = new RationalNumber(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
     RationalNumber result = new RationalNumber(0, 1);
     try (Scanner sc = new Scanner(System.in)) {
       while (sc.hasNextInt()) {
@@ -55,5 +65,4 @@ public class RationalNumberClient {
     System.out.println(result.equals(expected));
   }
 
-  */
 }
