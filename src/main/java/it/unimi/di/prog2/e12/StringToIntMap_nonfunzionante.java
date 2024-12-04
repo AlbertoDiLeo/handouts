@@ -22,7 +22,6 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 package it.unimi.di.prog2.e12;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -39,7 +38,7 @@ import java.util.NoSuchElementException;
  * stringhe e i valori sono interi. La mappa non può contenere chiavi duplicate, il che significa che
  * ogni chiave può essere associata al massimo a un valore.
   */
-public class StringToIntMap {
+public class StringToIntMap_nonfunzionante {
 
   // EXERCISE: provide a representation, together with its AF and RI
   // Note: do not use the Map in Java Collections, the point is to implement it from scratch!
@@ -51,10 +50,10 @@ public class StringToIntMap {
   // FIELDS
 
   /** La lista che contiene tutte le chiavi della mappa */
-  private final List<String> keys;
+  final List<String> keys;
 
   /** La lista che contiene tutti i valori della mappa */
-  private final List<Integer> values;
+  final List<Integer> values;
 
 
   /*-
@@ -97,7 +96,7 @@ public class StringToIntMap {
   // CONSTRUCTORS
 
   /** Creates a new empty map. */
-  public StringToIntMap() {
+  public StringToIntMap_nonfunzionante() {
     keys = new ArrayList<>();
     values = new ArrayList<>();
   }
@@ -134,7 +133,12 @@ public class StringToIntMap {
    * @return {@code true} iff this map contains a key-value mappings with the given {@code key}.
    */
   public boolean containsKey(String key) {
-    return dichotomicSearch(keys, key) >= 0;
+    for (String k : keys) {
+      if (k.equals(key)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
@@ -144,6 +148,12 @@ public class StringToIntMap {
    * @return {@code true} iff this map contains a key-value mappings with the given {@code value}.
    */
   public boolean containsValue(int value) {
+    /*for (int v : values) {
+      if (v == value) {
+        return true;
+      }
+    }
+    return false;*/
     return values.indexOf(value) != -1;
   }
 
@@ -155,9 +165,16 @@ public class StringToIntMap {
    * @throws NoSuchElementException if this map contains no mapping for the key.
    */
   public int get(String key) throws NoSuchElementException {
-    int insertionPoint = dichotomicSearch(keys, key);
-    if (insertionPoint < 0) throw new NoSuchElementException();
-    return values.get(insertionPoint);
+    if (!containsKey(key)) {
+      throw new NoSuchElementException("Key not found: " + key);
+    }
+    int i;
+    for (i = 0; i < keys.size(); i++) {
+      if (keys.get(i).equals(key)) {
+         break; 
+      }
+    }
+    return values.get(i);
   }
 
   /**
@@ -167,18 +184,16 @@ public class StringToIntMap {
    * @param value the value to be associated with the specified key.
    * @return {@code true} iff this map did not already contain a mapping for the key, and hence is
    *     modified by this operation.
-   */
-  public boolean put(String key, int value) {
-    int insertionPoint = dichotomicSearch(keys, key); // restituisce l'indice della chiave cercata, se presente, altrimenti restituisce l'indice dove inserire la chiave
-    if (insertionPoint >= 0) { //Se l'elemento è presente, la funzione restituisce l'indice dell'elemento.
-      values.set(insertionPoint, value); // aggiorna il valore associato alla chiave già presente
-      return false;
-    } else { 
-        // Se la funzione restituisce un valore negativo, significa che l'elemento non è presente nella lista e quindi va aggiunto o all'inzio o alla fine della lista
-      keys.add(-insertionPoint - 1, key);
-      values.add(-insertionPoint - 1, value);
-      return true;
+   */ // NON VA BENE PERCHE' NON AGGIORNA IL VALORE SE LA CHIAVE E' GIA' PRESENTE
+  public boolean put(String key, int value) { // !!!se contiene già la chiave restituisce false ma deve aggiornare il valore
+    if (containsKey(key)) return false;
+    int i = 0;
+    while (i < keys.size()) {
+        i++;
     }
+    keys.add(i, key);
+    values.add(i, value);
+    return true;
   }
 
   /**
@@ -189,10 +204,13 @@ public class StringToIntMap {
    *     modified by this operation.
    */
   public boolean remove(String key) {
-    int insertionPoint = dichotomicSearch(keys, key);
-    if (insertionPoint < 0) return false;
-    keys.remove(insertionPoint);
-    values.remove(insertionPoint);
+    if (!containsKey(key)) return false;
+    int i = 0;
+    while (i < keys.size() && !keys.get(i).equals(key)) {
+        i++;
+    }
+    keys.remove(i);
+    values.remove(i);
     return true;
   }
 
@@ -201,41 +219,6 @@ public class StringToIntMap {
     keys.clear();
     values.clear();
   }
-
-
-
-  /** FATTO DAL PROFESSORE
-   * Trova l'indice (o punto di inserimento) di una stringa in una lista di stringhe mantenute in ordine
-   * lessicografico crescente.
-   *
-   * <p>Se la lista contiene la stringa data, restituisce il suo indice. Altrimenti, restituisce {@code
-   * -(insertion_point) - 1} dove {@code insertion_point} è l'indice della prima stringa maggiore
-   * di {@code needle}; nota che questo implica che il valore restituito è non negativo se e solo se la lista
-   * contiene la stringa.
-   *
-   * @see Collections#binarySearch(List, Object)
-   * @param haystack la lista non {@code null} di stringhe non {@code null} in ordine crescente
-   *     lessicografico.
-   * @param needle la stringa da cercare.
-   * @return l'indice della stringa data, o {@code -insertion_point - 1} se non è presente.
-   */
-  private static int dichotomicSearch(final List<String> haystack, final String needle) { 
-    // Haystack = La lista di stringhe ordinate in ordine lessicografico crescente.
-    // Needle = La stringa da cercare.
-    int lo = 0; // insertion_point
-    int hi = haystack.size() - 1;
-    while (lo <= hi) {
-      int mid = lo + (hi - lo) / 2;
-      int cmp = needle.compareTo(haystack.get(mid));
-      if (cmp < 0) hi = mid - 1;
-      else if (cmp > 0) lo = mid + 1;
-      else return mid;
-    }
-    return -lo - 1;
-    // Se la stringa needle non è trovata, viene restituito -(insertion_point) - 1, dove insertion_point è l'indice lo al termine del ciclo. 
-    //Questo valore negativo può essere utilizzato per determinare il punto di inserimento della stringa needle nella lista mantenendo l'ordine.
-  }
-
 
 
   @Override

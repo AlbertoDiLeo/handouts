@@ -95,8 +95,10 @@ public class StringToIntMap {
    * @param needle the string to look for.
    * @return the index of the given string, or {@code -insertion_point - 1} if none is present.
    */
-  private static int dichotomicSearch(final List<String> haystack, final String needle) {
-    int lo = 0;
+  private static int dichotomicSearch(final List<String> haystack, final String needle) { 
+    // Haystack = La lista di stringhe ordinate in ordine lessicografico crescente.
+    // Needle = La stringa da cercare.
+    int lo = 0; // insertion_point
     int hi = haystack.size() - 1;
     while (lo <= hi) {
       int mid = lo + (hi - lo) / 2;
@@ -106,6 +108,8 @@ public class StringToIntMap {
       else return mid;
     }
     return -lo - 1;
+    // Se la stringa needle non è trovata, viene restituito -(insertion_point) - 1, dove insertion_point è l'indice lo al termine del ciclo. 
+    //Questo valore negativo può essere utilizzato per determinare il punto di inserimento della stringa needle nella lista mantenendo l'ordine.
   }
 
   /**
@@ -152,7 +156,7 @@ public class StringToIntMap {
   public boolean put(String key, int value) {
     int insertionPoint = dichotomicSearch(keys, key);
     if (insertionPoint >= 0) {
-      values.set(insertionPoint, value);
+      values.set(insertionPoint, value); // aggiorna il valore associato alla chiave già presente
       return false;
     } else {
       keys.add(-insertionPoint - 1, key);
