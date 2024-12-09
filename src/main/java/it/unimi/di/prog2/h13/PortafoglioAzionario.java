@@ -32,10 +32,11 @@ import java.util.Objects;
  * <p>Questa specificazione (e conseguente implementazione) ha molti difetti, tra cui:
  *
  * <ul>
- *   <li>le azioni hanno prezzo immutabile;
+ *   <li>le azioni hanno prezzo immutabile; => per i record
  *   <li>si possono creare azioni della medesima società con prezzo diverso;
  *   <li>non c'è modo di controllare il numero totale di azioni in circolazione per una data
  *       società;
+ *    (se non ho capito male quindi, nella realtà, ci possono essere più azioni della stessa società ma con prezzo uguale)
  * </ul>
  *
  * nelle prossime lezioni alcuni di questi difetti saranno corretti.
@@ -48,7 +49,7 @@ public class PortafoglioAzionario {
    * @param società il nome della società, deve essere non null e non vuoto.
    * @param prezzo il prezzo di una azione, deve essere maggiore di 0.
    */
-  public record Azione(String società, int prezzo) {
+  public record Azione(String società, int prezzo) { // i record rappresentano dati immutabili
 
     /** Costruisce una azione. */
     public Azione {
