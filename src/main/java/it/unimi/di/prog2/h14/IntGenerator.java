@@ -25,8 +25,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-/** Generator (in Liskov parlance) of the ints contained in a {@link List}. */
+// IntGenerator Implementa l'interfaccia Iterator<Integer>.
+// Fornisce i metodi hasNext() e next() per iterare su una lista di interi.
+
+/** Generator (in Liskov parlance) of the ints contained in a {@link List}. */ 
 public class IntGenerator implements Iterator<Integer> {
+  // Nella terminologia di Liskov, un generatore è un oggetto che produce una sequenza di valori, uno alla volta, su richiesta. 
+  // Questo concetto è strettamente legato agli iteratori, che sono utilizzati per attraversare collezioni di dati.
 
   /** The list elements. */
   private final List<Integer> els;
@@ -35,14 +40,13 @@ public class IntGenerator implements Iterator<Integer> {
   private int idx;
 
   /**
-   * Builds an iterator (partial constructor, used just in {@link IntSet}).
+   * Builds an iterator (partial constructor, used just in {@link IntSet}). parziale perchè solo in IntSet
    *
    * @param els the list of elements, must not be, or contain, {@code null}.
    */
   public IntGenerator(List<Integer> els) {
     this.els = els;
     this.idx = 0;
-    
   }
 
   @Override

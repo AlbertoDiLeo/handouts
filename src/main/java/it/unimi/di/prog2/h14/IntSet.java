@@ -27,12 +27,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+// IntSet Implementa l'interfaccia Iterable<Integer>.
+// Fornisce il metodo iterator() che restituisce un oggetto Iterator<Integer>, permettendo di iterare sugli elementi dell'insieme.
+
 /**
  * {@code IntSet}s are mutable, unbounded sets of integers.
  *
  * <p>A typical IntSet is \( S = \{x_1, \ldots, x_n \} \).
  */
 public class IntSet implements Iterable<Integer> {
+  // la parola chiave implements viene utilizzata per indicare che una classe implementa un'interfaccia. Un'interfaccia in Java è un tipo di dato astratto che contiene solo dichiarazioni di metodi (senza implementazioni) e costanti. 
+  // Quando una classe implementa un'interfaccia, deve fornire implementazioni concrete per tutti i metodi dichiarati nell'interfaccia.
 
   /** The {@link List} containing this set elements. */
   private final List<Integer> els;
@@ -57,7 +62,15 @@ public class IntSet implements Iterable<Integer> {
   public IntSet() {
     els = new ArrayList<>();
     assert repOk();
+    // L'asserzione assert repOk(); viene utilizzata per verificare gli invarianti di rappresentazione (rep invariants) della classe IntSet al momento della creazione di un oggetto.
   }
+
+  /*
+   * dove mettere le asserzioni?
+   * - costruttori
+   * - metodi che modificano lo stato dell'oggetto
+   * 
+   */
 
   /**
    * A *copy constructor*.
@@ -157,6 +170,9 @@ public class IntSet implements Iterable<Integer> {
   @Override
   public int hashCode() {
     els.sort(null); // benevolent side effect
+    // Questo metodo non modifica l'oggetto, ma ordina la lista di elementi.
+    // Questo è un effetto collaterale benevolo, poiché non modifica l'oggetto, ma solo la sua rappresentazione interna.
+    // Questa riga ordina la lista els in ordine naturale. L'ordinamento è un effetto collaterale benevolo (benevolent side effect) che garantisce che la lista sia sempre ordinata prima di calcolare il codice hash. Questo è importante perché l'ordine degli elementi nella lista influisce sul codice hash.
     return Objects.hash(els.size(), els);
   }
 
@@ -166,6 +182,7 @@ public class IntSet implements Iterable<Integer> {
     return "IntSet: {" + lst.substring(1, lst.length() - 1) + "}";
   }
 
+  // Metodo per ottenere un iteratore per l'insieme (IMPORTANTE)
   @Override
   public Iterator<Integer> iterator() {
     return new IntGenerator(els);
@@ -173,6 +190,8 @@ public class IntSet implements Iterable<Integer> {
 
   /**
    * An implementation of the RI.
+   * Il metodo repOk verifica gli altri invarianti di rappresentazione, come l'assenza di duplicati e di elementi nulli. 
+   * Non è necessario verificare che els sia non nullo, poiché questa condizione è garantita dai costruttori.
    *
    * @return whether the RI is satisfied.
    */
