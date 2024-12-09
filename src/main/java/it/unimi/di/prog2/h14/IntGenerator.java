@@ -42,6 +42,7 @@ public class IntGenerator implements Iterator<Integer> {
   public IntGenerator(List<Integer> els) {
     this.els = els;
     this.idx = 0;
+    
   }
 
   @Override
