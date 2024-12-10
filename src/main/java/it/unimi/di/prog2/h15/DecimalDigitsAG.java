@@ -24,6 +24,29 @@ package it.unimi.di.prog2.h15;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/*
+ * Differenze tra Iteratore Anonimo Classe Separata, classe interna e Named Static Generator:
+  Iteratore Anonimo:
+  Definito direttamente all'interno di un metodo.
+  Utilizzato quando l'iterazione è specifica per un particolare metodo.
+  Non riutilizzabile al di fuori del metodo.
+
+  Classe Separata per l'Iteratore:
+  Utilizzata quando l'iterazione è una funzionalità centrale della classe.
+  Riutilizzabile in più metodi o contesti.
+
+  Classe Interna per l'Iteratore:
+  Un generatore come classe interna è una classe definita all'interno di un'altra classe. Può essere una classe interna non statica. 
+  Questo approccio è utile quando l'iteratore deve accedere ai membri non statici della classe esterna (DecimalDigitsIG) (quindi campi e metodi) o 
+  quando si desidera mantenere l'implementazione dell'iteratore strettamente legata alla classe principale.
+
+  NSG (Named Static Generator):
+  L'iteratore è implementato come una classe interna statica con un nome specifico.
+  Non può accedere ai membri non statici della classe esterna.
+  Utilizzato quando l'iteratore deve essere riutilizzato all'interno della stessa classe ma non deve accedere ai membri non statici della classe esterna.
+
+ */
+
 /**
  * A class representing decimal digits of a long, endowed with a non zero digits iterator, based on
  * an <strong>anonymous</strong> class.
@@ -48,9 +71,16 @@ public class DecimalDigitsAG {
    *
    * @return the generator.
    */
+  // genratore anonimo
   public Iterator<Integer> nonZeroDigits() {
     // no need to pass any value, nor to define any named class
+
+    // La classe DecimalDigitsAG fornisce un metodo nonZeroDigits che restituisce un iteratore anonimo per iterare sulle cifre non zero di un numero long. 
+    // Non è necessario che la classe implementi Iterable perché il suo scopo principale non è quello di rappresentare una collezione iterabile, ma piuttosto di fornire un iteratore specifico per una sequenza di cifre.
+
     return new Iterator<Integer>() {
+      // Un iteratore anonimo è un'implementazione dell'interfaccia Iterator che viene definita direttamente all'interno di un metodo, senza creare una classe separata per l'iteratore. 
+      // Questo tipo di iteratore è spesso utilizzato quando l'iterazione è specifica per un particolare metodo e non è necessario riutilizzare l'iteratore altrove.
 
       /** The remaining digits to return (except possibly for the trailing zeroes). */
       private long remaining = number;

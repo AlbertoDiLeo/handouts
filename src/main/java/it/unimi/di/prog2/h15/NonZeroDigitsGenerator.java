@@ -24,6 +24,7 @@ package it.unimi.di.prog2.h15;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+// il generatore (chiamato da DecimalDigitsEG)
 /**
  * A generator returning the non zero digits of a long from the least to the most significant one.
  */
@@ -38,6 +39,8 @@ public class NonZeroDigitsGenerator implements Iterator<Integer> {
    * @param number the number.
    */
   protected NonZeroDigitsGenerator(final long number) {
+    // Il costruttore della classe NonZeroDigitsGenerator è dichiarato protected. 
+    // Questo significa che la classe può essere istanziata solo all'interno del pacchetto it.unimi.di.prog2.h15 o da sottoclassi di NonZeroDigitsGenerator.
     remaining = number;
   }
 

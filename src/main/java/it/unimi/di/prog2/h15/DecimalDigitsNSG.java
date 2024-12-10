@@ -57,7 +57,7 @@ public class DecimalDigitsNSG {
   }
 
   /** A nested static class implementing the genrator. */
-  private static class NonZeroDigitsGeneratorNS implements Iterator<Integer> {
+  private static class NonZeroDigitsGeneratorNS implements Iterator<Integer> { // se voglio usare un iteratore in una classe interna, uso iterator
 
     /** The remaining digits to return (except possibly for the trailing zeroes). */
     private long remaining;
@@ -94,6 +94,7 @@ public class DecimalDigitsNSG {
    */
   public Iterator<Integer> nonZeroDigits() {
     // we "expose" the representation, albeit just to a nested static class
+    // traduzione: "esponiamo" la rappresentazione, sebbene solo a una classe statica nidificata
     return new NonZeroDigitsGeneratorNS(number);
   }
 }

@@ -35,7 +35,10 @@ import java.util.Objects;
  *
  * <p>A typical IntSet is \( S = \{x_1, \ldots, x_n \} \).
  */
-public class IntSet implements Iterable<Integer> {
+
+ // IntSet: Implementa l'interfaccia Iterable<Integer>, il che richiede l'implementazione del metodo iterator(). 
+ // Questo permette di utilizzare IntSet nei cicli for-each.
+public class IntSet implements Iterable<Integer> { // se stiamo dichiarando una classe, uso iterable e non iterator
   // la parola chiave implements viene utilizzata per indicare che una classe implementa un'interfaccia. Un'interfaccia in Java è un tipo di dato astratto che contiene solo dichiarazioni di metodi (senza implementazioni) e costanti. 
   // Quando una classe implementa un'interfaccia, deve fornire implementazioni concrete per tutti i metodi dichiarati nell'interfaccia.
 
@@ -187,6 +190,7 @@ public class IntSet implements Iterable<Integer> {
   public Iterator<Integer> iterator() {
     return new IntGenerator(els);
   }
+  // IntSet: Il metodo iterator() è annotato con @Override perché sovrascrive il metodo dell'interfaccia Iterable.
 
   /**
    * An implementation of the RI.

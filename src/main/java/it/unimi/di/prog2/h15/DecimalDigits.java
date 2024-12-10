@@ -22,6 +22,7 @@ along with this file.  If not, see <https://www.gnu.org/licenses/>.
 package it.unimi.di.prog2.h15;
 
 /** A class representing decimal digits of a long. */
+// rappresentare e manipolare le cifre decimali di un numero intero lungo (long).
 public class DecimalDigits {
 
   /** The number whose digits are represented by this class. */
@@ -48,4 +49,7 @@ public class DecimalDigits {
     for (int i = 0; i < power; i++) digit /= 10;
     return (int) (digit % 10);
   }
+  // restituisce la cifra corrispondente alla potenza di 10 data.
+  // Il metodo digit nella classe DecimalDigits restituisce la cifra corrispondente alla potenza di 10 specificata. 
+  // Questo metodo è utile per estrarre singole cifre da un numero long e può essere utilizzato in vari contesti in cui è necessario lavorare con le cifre decimali di un numero.
 }

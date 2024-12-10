@@ -33,7 +33,18 @@ import java.util.NoSuchElementException;
  * #toString()} that concatenates non-null strings with a space, inserting a newline for each {@code
  * null}, and via an iterator that returns just the non-null strings.
  */
+
+ // La classe StringFormatter raccoglie una sequenza di stringhe e le formatta.
+ // Può restituire la sequenza formattata sia tramite il metodo toString() sia tramite un iteratore che restituisce solo le stringhe non null.
+
 public class StringFormatter implements Iterable<String> {
+  // se implementa l'interfaccia Iterable<String> deve fornire un'implementazione del metodo iterator() che restituisce un oggetto Iterator<String> (con Override)
+
+  /*
+   * Quando Usare Iterable e Iterator
+   * Implementare Iterable: Utilizza Iterable quando vuoi che la tua classe rappresenti una collezione iterabile che può essere utilizzata nei cicli for-each. Questo richiede l'implementazione del metodo iterator().
+   * Fornire un Metodo che Restituisce un Iterator: Utilizza un metodo che restituisce un Iterator quando vuoi fornire un iteratore per una funzionalità specifica della tua classe, ma non vuoi che la tua classe sia considerata una collezione iterabile.
+   */
 
   /** The list of added strings. */
   private final List<String> string;
@@ -43,6 +54,7 @@ public class StringFormatter implements Iterable<String> {
    *   AF(string) =
    *    the non-null elements of string, where null indicates
    *    where the new-lines shoud be introduced in the concatenation
+   *    Descrive come lo stato interno della lista string rappresenta la sequenza di stringhe, dove null indica dove devono essere introdotte le nuove righe nella concatenazione.
    *
    * RI:
    *  - string is not null (but may contain nulls).
@@ -79,6 +91,7 @@ public class StringFormatter implements Iterable<String> {
 
   /** Returns an iterator over the non-null strings in this formatter. */
   @Override
+  // iteratore anonimo
   public Iterator<String> iterator() {
     return new Iterator<>() {
 
@@ -94,6 +107,10 @@ public class StringFormatter implements Iterable<String> {
        *  otherwise if it is null, if !it.hasNext() then the iteration is over,
        *  otherwise the candidate next string is the next non-null string in it.
        *
+       *  Se next non è null, contiene la prossima stringa da restituire.
+       *  Se next è null e it.hasNext() è false, l'iterazione è terminata.
+       * Se next è null e it.hasNext() è true, la prossima stringa candidata è la prossima stringa non null in it.
+       * 
        * * RI:
        *   - it is not null.
        */

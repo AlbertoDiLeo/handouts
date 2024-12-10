@@ -57,7 +57,14 @@ public class DecimalDigitsIG {
   }
 
   /** An inner class implementing the generator. */
-  private class NonZeroDigitsGeneratorIG implements Iterator<Integer> {
+  private class NonZeroDigitsGeneratorIG implements Iterator<Integer> { // se voglio usare un iteratore in una classe, uso iterator
+
+    /*
+     * Generatore come Classe Interna
+     * Un generatore come classe interna è una classe definita all'interno di un'altra classe. Può essere una classe interna non statica o una classe interna statica. 
+     * Questo approccio è utile quando l'iteratore deve accedere ai membri non statici della classe esterna (DecimalDigitsIG) (quindi campi e metodi) o 
+     * quando si desidera mantenere l'implementazione dell'iteratore strettamente legata alla classe principale.
+     */
 
     /** . */
     private NonZeroDigitsGeneratorIG() {}
@@ -89,6 +96,7 @@ public class DecimalDigitsIG {
   public Iterator<Integer> nonZeroDigits() {
     // no need to pass any value: the representation is shared among this class
     // and the inner generator
+    // traduzione: non c'è bisogno di passare alcun valore: la rappresentazione è condivisa tra questa classe e il generatore interno
     return new NonZeroDigitsGeneratorIG();
   }
 }

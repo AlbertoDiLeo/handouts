@@ -60,8 +60,17 @@ public class DecimalDigitsEG {
    *
    * @return the generator.
    */
+  // l'iteratore o generatore è implementato come una classe separata esterna. Questo approccio permette di riutilizzare l'iteratore in più contesti e classi.
   public Iterator<Integer> nonZeroDigits() {
-    // we expose the representation to an external class
+    // we expose the representation to an external class 
+    // traduzione: esponiamo la rappresentazione a una classe esterna
     return new NonZeroDigitsGenerator(number);
   }
+
+  // DecimalDigitsEG: Fornisce una funzionalità specifica per iterare sulle cifre non zero di un numero long. Non rappresenta una collezione iterabile generica, quindi implementare Iterable non è necessario.
+
+  // DecimalDigitsEG: Non implementa Iterable<Integer>, quindi non è utilizzabile direttamente nei cicli for-each. 
+  // Fornisce invece un metodo specifico nonZeroDigits() per ottenere un iteratore.
+
+  // Implementare Iterable non è necessario in questo caso perché la classe non rappresenta una collezione iterabile generica, ma fornisce una funzionalità specifica.
 }
