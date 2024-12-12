@@ -41,6 +41,7 @@ public class NonZeroDigitsGenerator implements Iterator<Integer> {
   protected NonZeroDigitsGenerator(final long number) {
     // Il costruttore della classe NonZeroDigitsGenerator è dichiarato protected. 
     // Questo significa che la classe può essere istanziata solo all'interno del pacchetto it.unimi.di.prog2.h15 o da sottoclassi di NonZeroDigitsGenerator.
+    // il costruttore è visibile solo per i suoi sotto-tipi e per le classi dello stesso package, non per le classi esterne e l'utente finale.
     remaining = number;
   }
 
