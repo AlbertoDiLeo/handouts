@@ -42,6 +42,8 @@ public class OrderedIntSet extends ListBasedAbstractIntSet {
   /** Creates an empty set. */
   public OrderedIntSet() {}
 
+  // elements si trova in ListBasedAbstractIntSet
+
   /**
    * Returns the maximum element of this set.
    *
@@ -69,6 +71,7 @@ public class OrderedIntSet extends ListBasedAbstractIntSet {
     // this improves to O(log n) the O(n) super implementation
     return Collections.binarySearch(elements, x) >= 0;
   }
+  // Se l'elemento x è presente nella lista elements, binarySearch restituisce un indice non negativo.
 
   @Override
   public void insert(int x) {

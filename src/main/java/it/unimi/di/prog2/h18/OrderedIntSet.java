@@ -64,7 +64,7 @@ public class OrderedIntSet extends AbstractIntSet {
   /**
    * Returns the minimum element of this set.
    *
-   * @return the maximum element of this set.
+   * @return the minimum element of this set.
    * @throws NoSuchElementException if this set is empty.
    */
   public int min() throws NoSuchElementException {
@@ -85,6 +85,17 @@ public class OrderedIntSet extends AbstractIntSet {
       size++;
     }
   }
+
+  /*
+   * Supponiamo di avere una lista ordinata elements con i seguenti elementi: [1, 3, 5, 7].
+   * Inserimento di un Elemento Esistente:
+   * Se si tenta di inserire 3, la ricerca binaria restituirà 1 (l'indice dell'elemento 3 nella lista).
+   * Poiché index non è negativo, l'elemento 3 non verrà inserito di nuovo.
+   * Inserimento di un Nuovo Elemento:
+   * Se si tenta di inserire 4, la ricerca binaria restituirà -3 (indicando che 4 dovrebbe essere inserito nella posizione 2 per mantenere l'ordine).
+   * -index - 1 calcola la posizione corretta come 2.
+   * L'elemento 4 viene inserito nella posizione 2, risultando nella lista [1, 3, 4, 5, 7].
+   */
 
   @Override
   public void remove(int x) {

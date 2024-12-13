@@ -48,6 +48,13 @@ public class IntSet extends AbstractIntSet {
   public Iterator<Integer> iterator() {
     return Collections.unmodifiableCollection(elements).iterator();
   }
+  // Utilizza un iteratore standard su una collezione non modificabile. no utilizza un iteratore personalizzato
+
+  /*
+   * Collections.unmodifiableCollection(elements) restituisce una vista non modificabile della collezione elements.
+   * Questo significa che l'iteratore restituito non permette di modificare la collezione sottostante durante l'iterazione.
+   * È una buona pratica restituire una collezione non modificabile per evitare modifiche accidentali o non autorizzate agli elementi dell'insieme durante l'iterazione.
+   */
 
   @Override
   public void insert(int x) {
@@ -60,7 +67,15 @@ public class IntSet extends AbstractIntSet {
   }
 
   @Override
-  public void remove(int x) {
+  public void remove(int x) { // rimozione diretta
     if (elements.remove(Integer.valueOf(x))) size--;
   }
+  // perchè non facciamo come in h14 con rimozione con sostituizione?
+  /*
+   * int i = getIndex(x);
+    if (i < 0) return;
+    int last = els.size() - 1;
+    els.set(i, els.get(last));
+    els.remove(last);
+   */
 }

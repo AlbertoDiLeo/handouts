@@ -43,6 +43,7 @@ public abstract class AbstractIntSet implements Iterable<Integer> {
   protected AbstractIntSet() {
     size = 0;
   }
+  // protected impedisce la creazione di istanze dirette della classe astratta, ma permette alle sottoclassi di chiamare il costruttore della superclasse
 
   /**
    * Adds the given element to this set.
@@ -119,4 +120,6 @@ public abstract class AbstractIntSet implements Iterable<Integer> {
     for (Integer e : this) sj.add(e.toString());
     return sj.toString();
   }
+
+  // StringJoiner è una classe introdotta in Java 8 che facilita la costruzione di stringhe con delimitatori, prefissi e suffissi. È particolarmente utile quando si vuole creare una stringa concatenando elementi separati da un delimitatore specifico.
 }

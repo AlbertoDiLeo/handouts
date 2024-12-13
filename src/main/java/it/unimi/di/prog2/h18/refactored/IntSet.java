@@ -33,6 +33,7 @@ public class IntSet extends ListBasedAbstractIntSet {
 
   /** Creates an empty set. */
   public IntSet() {}
+  // elements si trova in ListBasedAbstractIntSet
 
   @Override
   public void insert(int x) {

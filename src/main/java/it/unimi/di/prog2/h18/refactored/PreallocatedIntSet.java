@@ -34,6 +34,7 @@ public class PreallocatedIntSet extends AbstractIntSet {
 
   /** The array of elements. */
   protected int[] elements;
+  // al posto di usare una arraylist, uso un array di interi
 
   /*-
    * AF(size, elements) = { elements[i] | 0 <= i < size }

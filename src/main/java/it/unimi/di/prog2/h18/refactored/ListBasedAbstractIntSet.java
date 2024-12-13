@@ -31,6 +31,7 @@ public abstract class ListBasedAbstractIntSet extends AbstractIntSet {
 
   /** The set elements. */
   protected final List<Integer> elements;
+  // elements sia in IntSet che in OrderedIntSet
 
   /*-
    * AF(elements, size) = { elements.get(0), elements.get(1), ..., elements.get(size - 1) }
