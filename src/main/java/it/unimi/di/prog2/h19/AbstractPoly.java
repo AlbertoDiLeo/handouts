@@ -27,7 +27,7 @@ import java.util.Iterator;
 public abstract class AbstractPoly implements Poly {
 
   /** The degree of the polynomial. */
-  private final int degree;
+  private final int degree; // grado complessivo del polinomio
 
   /*-
    * RI: degree >= 0
@@ -82,6 +82,8 @@ public abstract class AbstractPoly implements Poly {
     Iterator<Poly.Term> it = iterator();
     Term t = it.next();
     StringBuilder result = new StringBuilder(this.getClass().getSimpleName() + ": ");
+    // se la classe completa è it.unimi.di.prog2.h19.AbstractPoly, getSimpleName() restituirà AbstractPoly. 
+    // this.getClass().getSimpleName() è spesso utilizzato nei metodi toString() per includere il nome della classe nella rappresentazione testuale dell'oggetto.
     if (t.degree() == 0) result.append(t.coefficient());
     else {
       if (t.coefficient() < -1) result.append(t.coefficient());

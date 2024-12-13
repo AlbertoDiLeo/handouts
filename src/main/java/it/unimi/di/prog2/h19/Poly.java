@@ -36,7 +36,7 @@ public interface Poly extends Iterable<Poly.Term> {
    * @param coefficient the coefficient of the term.
    * @param degree the degree of the term.
    */
-  public record Term(int coefficient, int degree) {
+  public record Term(int coefficient, int degree) { // singoli termini del polinomio (coefficiente e grado per ogni termine)
 
     /**
      * Creates a new term with the given coefficient and degree.
@@ -113,4 +113,6 @@ public interface Poly extends Iterable<Poly.Term> {
     for (Poly.Term t : this) if (t.degree == degree) return t.coefficient;
     return 0;
   }
+  // Questa logica è applicabile a qualsiasi implementazione di un polinomio che utilizza una collezione di termini.
+  // per questo default. se non lo avessi messo, errore perchè le interfacce non possono avere metodi concreti.
 }

@@ -97,6 +97,7 @@ public class DensePoly extends AbstractPoly {
 
   @Override
   public Iterator<Term> iterator() {
+    // DensePoly, invece, utilizza un array di coefficienti che include anche i termini nulli, quindi richiede un iteratore personalizzato che salti i termini nulli
     return new Iterator<Poly.Term>() {
 
       /** A lower bound for the degree of the next term to return. */

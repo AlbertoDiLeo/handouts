@@ -60,6 +60,7 @@ public class SparsePoly extends AbstractPoly {
    */
   public SparsePoly(int coefficient, int degree) throws IllegalArgumentException {
     this(List.of(new Term(coefficient, degree)));
+    // crea una lista immutabile, il che significa che la lista non può essere modificata dopo la sua creazione
   }
 
   /**
