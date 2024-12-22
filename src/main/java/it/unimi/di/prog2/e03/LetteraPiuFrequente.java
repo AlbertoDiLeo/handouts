@@ -29,10 +29,10 @@ import java.util.Scanner;
  * Vedi <a
  * href="https://github.com/mapio/labprog/blob/master/esercizi/lettera_piu_frequente/Testo.md">testo</a>,
  */
-public class LetteraPiùFrequente {
+public class LetteraPiuFrequente {
 
   /** . */
-  private LetteraPiùFrequente() {}
+  private LetteraPiuFrequente() {}
   // private LetteraPiùFrequente() perchè non voglio che venga creata un'istanza di questa classe
   // non posso creare oggetti di questa classe perchè il costruttore è privato
 
